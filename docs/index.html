@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <link rel="shortcut icon" href="../neptune/icon.png" type="image/x-icon">
+    <title>Negative Lang | Documentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0a0a;
+            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #e0e0e0;
+        }
+
+        /* Carte simple */
+        .card {
+            background: #111111;
+            border-radius: 2rem;
+            padding: 2.5rem 2rem;
+            max-width: 550px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 35px rgba(0, 0, 0, 0.5);
+            border: 1px solid #2a2a2a;
+        }
+
+        /* Logo */
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 6px rgba(255,255,255,0.1));
+        }
+
+        /* Titre */
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #f0f0f0;
+            margin-bottom: 0.25rem;
+        }
+
+        .sub {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 1.8rem;
+            font-weight: 400;
+        }
+
+        /* Boîte instruction */
+        .instruction-box {
+            background: #1a1a1a;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border: 1px solid #2c2c2c;
+        }
+
+        .rotating-text {
+            font-size: 1.3rem;
+            font-weight: 450;
+            line-height: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            color: #cccccc;
+        }
+
+        .lang-icon {
+            font-size: 1.8rem;
+        }
+
+        /* Bouton */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #1e1e1e;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            color: #dddddd;
+            border: 1px solid #3a3a3a;
+            transition: all 0.2s ease;
+            margin-top: 0.5rem;
+        }
+
+        .btn:hover {
+            background: #2a2a2a;
+            border-color: #5a5a5a;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-note {
+            margin-top: 1.8rem;
+            font-size: 0.7rem;
+            color: #5a5a5a;
+        }
+
+        @media (max-width: 500px) {
+            .card {
+                padding: 1.8rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .rotating-text {
+                font-size: 1rem;
+            }
+            .logo {
+                width: 90px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <!-- Logo (chemin : ../neptune/logo.png) -->
+    <img src="../neptune/icon.png" alt="Negative Lang Logo" class="logo" onerror="this.onerror=null; this.src='https://placehold.co/120x120/1a1a1a/888888?text=⛔';">
+
+    <h1>NEGATIVE</h1>
+    <div class="sub">programming by negation</div>
+
+    <!-- Bloc instruction tournante (9 langues) -->
+    <div class="instruction-box">
+        <div class="rotating-text" id="dynamicInstruction">
+            <span class="lang-icon" id="langFlag">🌍</span>
+            <span id="instructionMessage">Chargement...</span>
+        </div>
+    </div>
+
+    <a href="https://github.com/tantelyorion/negative-docs" target="_blank" rel="noopener noreferrer" class="btn">
+        📖 Documentation complète
+        <span>→</span>
+    </a>
+    <div class="footer-note">
+        ⛔ Tout est interdit par défaut
+    </div>
+</div>
+
+<script>
+    // 9 langues – texte invitant à consulter negative-docs
+    const messages = [
+        { flag: "🇫🇷", text: "📘 Documentation complète sur GitHub → negative-docs" },
+        { flag: "🇬🇧", text: "📘 Full documentation on GitHub → negative-docs" },
+        { flag: "🇪🇸", text: "📘 Documentación completa en GitHub → negative-docs" },
+        { flag: "🇩🇪", text: "📘 Vollständige Dokumentation auf GitHub → negative-docs" },
+        { flag: "🇮🇹", text: "📘 Documentazione completa su GitHub → negative-docs" },
+        { flag: "🇵🇹", text: "📘 Documentação completa no GitHub → negative-docs" },
+        { flag: "🇷🇺", text: "📘 Полная документация на GitHub → negative-docs" },
+        { flag: "🇨🇳", text: "📘 GitHub 上的完整文档 → negative-docs" },
+        { flag: "🇯🇵", text: "📘 GitHubで完全なドキュメント → negative-docs" }
+    ];
+
+    let idx = 0;
+    const flagSpan = document.getElementById('langFlag');
+    const msgSpan = document.getElementById('instructionMessage');
+
+    function updateMessage() {
+        const current = messages[idx];
+        flagSpan.textContent = current.flag;
+        msgSpan.textContent = current.text;
+        idx = (idx + 1) % messages.length;
+    }
+
+    updateMessage();
+    setInterval(updateMessage, 5000);
+</script>
+</body>
+</html>
