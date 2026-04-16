@@ -1,0 +1,13 @@
+# Negative Language Dependencies
+# No external dependencies required for core functionality
+# Python 3.7+ only
+
+# For development and testing
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# For optional JSON schema validation
+jsonschema>=4.0.0
+
+# For colored output in CLI (optional)
+colorama>=0.4.6; sys_platform == 'win32'

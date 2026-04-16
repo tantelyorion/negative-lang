@@ -1,0 +1,56 @@
+# Comprehensive example of Negative Language features
+
+# Security policy for a web application
+policy web_security {
+    deny all
+    allow authenticated
+    allow admin
+    !guest
+    !anonymous
+    !bot
+    !vpn_traffic
+}
+
+# System configuration
+system {
+    !debug_mode
+    !verbose_logging
+    !cache
+    !compression
+    
+    # System parameters
+    max_connections = 1000
+    timeout = 30
+    rate_limit = 100
+    ssl_enabled = true
+    api_version = "v2"
+}
+
+# Conditional rules based on context
+if user_role == "admin"
+    allow all_resources
+
+if user_role == "moderator"
+    allow content_management
+    allow user_management
+    !system_config
+
+if request_ip in blacklist
+    deny all_access
+
+if request_rate > rate_limit
+    deny api_access
+    !api_v2
+
+# Exclusion rules for specific scenarios
+!deprecated_features
+!legacy_api
+!beta_features
+
+# Logging configuration
+system {
+    !access_logs
+    !error_logs
+    audit_level = "strict"
+    retention_days = 90
+}

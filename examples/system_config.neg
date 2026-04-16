@@ -1,0 +1,17 @@
+policy web_server {
+    deny all
+    allow port_80
+    allow port_443
+    !port_22
+    !port_21
+}
+
+system {
+    !cache
+    !compression
+    ssl_enabled = true
+    max_body_size = 10485760
+}
+
+if external_request
+    deny admin_access

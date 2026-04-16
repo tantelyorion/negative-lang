@@ -1,0 +1,16 @@
+policy ai_model {
+    deny all
+    allow inference
+    !training
+    !data_collection
+}
+
+system {
+    !debug
+    !profiling
+    batch_size = 32
+    learning_rate = 0.001
+}
+
+if user_consent == false
+    deny data_storage

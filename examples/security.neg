@@ -1,0 +1,20 @@
+policy security {
+    deny all
+    allow admin
+    allow trusted_ip
+    !guest
+    !anonymous
+}
+
+system {
+    !debug_mode
+    !verbose_logging
+    max_connections = 100
+    timeout = 30
+}
+
+if connected and !vpn
+    deny access
+
+if admin
+    allow everything

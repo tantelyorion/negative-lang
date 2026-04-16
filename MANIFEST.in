@@ -1,0 +1,12 @@
+include README.md
+include LICENSE
+include requirements.txt
+include MANIFEST.in
+
+recursive-include examples *.neg
+recursive-include tests *.py
+
+global-exclude __pycache__
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.so
