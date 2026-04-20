@@ -10,7 +10,7 @@ from .ast import Program, Policy, SystemBlock, Rule
 from .interpreter import Interpreter
 from .rules_engine import RulesEngine, RuleSet
 
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 __all__ = [
     "NegativeCLI",
     "main",
