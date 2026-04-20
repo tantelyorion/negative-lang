@@ -30,6 +30,7 @@ negative-lang/
 │   ├── ast.py
 │   ├── interpreter.py
 │   ├── rules_engine.py
+    ├── typing.py
 │   │
 │   ├── runtime/
 │   │   ├── __init__.py
